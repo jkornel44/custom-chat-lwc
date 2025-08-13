@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<%- include('../partials/header.ejs', {title: 'Lightning Out'}) %>
+	<script src="<%- sfdcServerUrl %>/lightning/lightning.out.js"></script>
+</head>
+
+<body style="background-color: #F2F4F5;">
+	<div id="lwcLightning"></div>
+</body>
+
+<script>
+	$Lightning.use(
+		"<%- appName %>",
+		() => {
+			$Lightning.createComponent(
+				"<%- lwcCmpName %>",
+				{ msg: "It works (LWC)!" },
+				"lwcLightning",
+				(cmp) => {
+					console.log("LWC component was created");
+				}
+			);
+		},
+		"<%- lightningServerUrl %>",
+		"<%- accessToken %>"
+	);
+</script>
+
+</html>
